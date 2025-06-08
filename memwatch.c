@@ -14,7 +14,7 @@ int main() {
     char *b_buffer = malloc(buffer_size_b);
 
     if (a_buffer == NULL || b_buffer == NULL) {
-        fprintf(stderr, "No memory allocated, exiting!");
+        fprintf(stderr, "\nNo memory allocated, exiting!");
         return 1;
     }
 
