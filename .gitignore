@@ -53,3 +53,5 @@ dkms.conf
 
 # Local
 hello
+file_reader
+memwatch
