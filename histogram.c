@@ -8,7 +8,7 @@ int main() {
     printf("Input: %s", input);
     unsigned char *p = (unsigned char *)input;
 
-    unsigned int histogram[256] = {0}; //assuming all we need to do is init the first.
+    unsigned int histogram[256] = {0};
     printf("histogram[255]: %d", histogram[255]);
     while(*p != '\0') {
         histogram[*p]++;
