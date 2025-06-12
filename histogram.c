@@ -6,12 +6,12 @@
 int main() {
     char input[] = "Once there was a way to get back home";
     printf("Input: %s", input);
-    char *p = input;
+    unsigned char *p = (unsigned char *)input;
 
     unsigned int histogram[256] = {0}; //assuming all we need to do is init the first.
     printf("histogram[255]: %d", histogram[255]);
     while(*p != '\0') {
-        histogram[(unsigned char)*p]++;
+        histogram[*p]++;
         p++;
     }
 
