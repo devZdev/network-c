@@ -3,6 +3,15 @@
 #include <string.h>
 #include <unistd.h>
 
+char* make_word(char* start, size_t length) {
+    char* buffer = malloc(length + 1);
+    for (int i =0; i < length; i++) {
+        buffer[i] = start[i];
+    }
+    buffer[length] = '\0';
+    return buffer;
+}
+
 int main() {
     char text[] = "Maybe if we go to New Jersey we could buy a couch";
     int counts[256] = {0};
@@ -15,13 +24,8 @@ int main() {
         if (*t == 32 || *t == '\0') {
             word_end = t - 1;
             size_t length = word_end - word_start + 1;
-            char* buffer = malloc(length + 1);
-            for (int i =0; i < length; i++) {
-                buffer[i] = word_start[i];
-            }
-            buffer[length] = '\0';
+            char* buffer = make_word(word_start, length);
 
-            // check if word from stack buffer matches any words in heap buffer
             int found = 0;
             for (int j = 0; j < 256; j++) {
                 if (p_words[j] != NULL && ((strcmp(p_words[j], buffer)) == 0)) {
@@ -31,7 +35,6 @@ int main() {
                 }
             }
 
-            // not found, allocate heap
             if (found == 0) {
                 for (int k = 0; k < 256; k++) {
                     if (p_words[k] == NULL) {
@@ -42,16 +45,15 @@ int main() {
                 }
             }
 
-            // put word start on the next word, i.e. text + 1
             word_start = t + 1;
         }
+
         if (*t == '\0') {
             break;
         }
+
         t++;
     }
-
-
 
     for (int m = 0; m < 256; m++) {
         if (p_words[m] != NULL) {
@@ -65,3 +67,4 @@ int main() {
         }
     }
 }
+
