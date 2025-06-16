@@ -35,13 +35,7 @@ int main() {
             if (found == 0) {
                 for (int k = 0; k < 256; k++) {
                     if (p_words[k] == NULL) {
-                        // if not, allocate mem
-                        char* heap_buffer = malloc(length + 1);
-                        // put word in buffer
-                        strcpy(heap_buffer, buffer);
-                        // put pointer to word in p_words
-                        p_words[k] = heap_buffer;
-                        // put count in counts
+                        p_words[k] = buffer;
                         counts[k] = 1;
                         break;
                     }
