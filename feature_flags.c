@@ -22,6 +22,14 @@ int has_flag(int flags, int feature) {
     return (flags & feature) != 0;
 }
 
+void toggle_flag(unsigned int* flags, int feature) {
+    *flags ^= feature;
+}
+
+void reset_flags(unsigned int* flags) {
+    *flags = 0;
+}
+
 void print_flags (unsigned int flags) {
     if (flags & FEATURE_LOGIN) puts ("FEATURE LOGIN ENABLED");
     if (flags & FEATURE_UPLOAD) puts ("FEATURE UPLOAD ENABLED");
@@ -33,6 +41,11 @@ void print_flags (unsigned int flags) {
 int main() {
     unsigned int flags = 0;
     enable_flag(&flags, FEATURE_LOGIN);
+    reset_flags(&flags);
+    toggle_flag(&flags, FEATURE_SHARE);
+    disable_flag(&flags, FEATURE_SHARE);
+    enable_flag(&flags, FEATURE_MODIFY);
+    has_flag(flags, FEATURE_MODIFY);
     print_flags(flags);
 }
 
